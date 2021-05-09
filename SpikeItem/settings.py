@@ -25,7 +25,7 @@ SECRET_KEY = '@il@@$fij(rirf5%=3@zg2720$$g2833^6%2fwea2w!wm=gzh9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1","2e8e65e3c848.ngrok.io"]
+ALLOWED_HOSTS = ["127.0.0.1","3aa768d52ee2.ngrok.io"]
 
 
 # Application definition
@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Brands',
+    'Category',
     'Products',
-    'rest_framework'
+    'rest_framework',
+    'user',
+    'Cart',
+    'CartItems',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -132,3 +136,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'user.UserProfile'
