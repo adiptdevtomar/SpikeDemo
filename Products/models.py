@@ -16,12 +16,14 @@ class ProductModel(models.Model):
     price = models.DecimalField(blank = False, decimal_places = 2, max_digits = 80)
     quantity = models.IntegerField(blank = False)
     description = models.CharField(max_length = 500, blank = False)
+    buyCount = models.IntegerField(blank = False, default = 0)
     category = models.ForeignKey(CategoryModel, to_field="id", on_delete=models.CASCADE)
     image = models.ImageField(upload_to = get_image_filename,verbose_name="image")
     #category
 
     def save(self, *args, **kwargs):
         self.id = get_random_string(8)
+        self.buyCount = 0
         super(ProductModel,self).save(*args, **kwargs)
 
     def saveUpdate(self, *args, **kwargs):

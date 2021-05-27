@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import Http404
+from rest_framework.pagination import PageNumberPagination
+
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -27,9 +30,16 @@ def GetAppProductsOfCategoryView(request, nm):
 @csrf_exempt
 def GetProductView(request):
     if request.method == "GET":
-        products = models.ProductModel.objects.all()
+        """products = models.ProductModel.objects.all()
         serializer = serializers.ProductsSerializer(products, many = True, context={"request":request})
-        return Response(serializer.data, status = status.HTTP_200_OK)
+        return Response(serializer.data, status = status.HTTP_200_OK)"""
+
+        paginator = PageNumberPagination()
+        paginator.page_size = 6
+        products = models.ProductModel.objects.all().order_by('-buyCount')
+        result_page = paginator.paginate_queryset(products, request)
+        serializer = serializers.ProductsSerializer(result_page, many = True, context={"request":request})
+        return paginator.get_paginated_response(serializer.data)
 
 
 @api_view(['POST'])
