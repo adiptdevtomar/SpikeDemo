@@ -25,7 +25,7 @@ SECRET_KEY = '@il@@$fij(rirf5%=3@zg2720$$g2833^6%2fwea2w!wm=gzh9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1","8ff37148acf1.ngrok.io"]
+ALLOWED_HOSTS = ["127.0.0.1","32b7d43fc6b2.ngrok.io"]
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user',
     'Cart',
     'CartItems',
+    'Orders',
     'rest_framework.authtoken'
 ]
 
@@ -91,7 +92,7 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'SpikeItem',
+        'NAME': 'SpikeDemo',
     }
 }
 
